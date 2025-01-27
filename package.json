@@ -10,7 +10,7 @@
     "safesync": "git reset --hard && npm run check:connection && npm run fullsync || npm run launch:win",
     "fullsync": "npm run check:connection && npm run update && npm install && npm run grab:media && npm run build:win64 && npm run wait && npm run launch:win",
     "launch:win": "START ./dist/win-unpacked/CSUTGKIOSK.exe",
-    "update": "git pull origin master",
+    "update": "git pull origin main",
     "wait": "node ./automation/wait.js",
     "grab:media": "node ./automation/grab-media.js",
     "check:connection": "node ./automation/check-connection.js",
