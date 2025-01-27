@@ -1,0 +1,47 @@
+{
+  "private": true,
+  "name": "my-nextron-app",
+  "description": "My application description",
+  "version": "1.0.0",
+  "author": "Yoshihide Shiono <shiono.yoshihide@gmail.com>",
+  "main": "app/background.js",
+  "scripts": {
+    "dev": "nextron",
+    "safesync": "git reset --hard && npm run check:connection && npm run fullsync || npm run launch:win",
+    "fullsync": "npm run check:connection && npm run update && npm install && npm run grab:media && npm run build:win64 && npm run wait && npm run launch:win",
+    "launch:win": "START ./dist/win-unpacked/CSUTGKIOSK.exe",
+    "update": "git pull origin master",
+    "wait": "node ./automation/wait.js",
+    "grab:media": "node ./automation/grab-media.js",
+    "check:connection": "node ./automation/check-connection.js",
+    "build": "nextron build",
+    "build:all": "nextron build --all",
+    "build:win32": "nextron build --win --ia32",
+    "build:win64": "nextron build --win --x64",
+    "build:mac": "nextron build --mac --x64",
+    "build:linux": "nextron build --linux",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "dependencies": {
+    "electron-serve": "^1.1.0",
+    "electron-store": "^7.0.2",
+    "lodash": "^4.17.21",
+    "next-plugin-preval": "^1.2.1",
+    "sass": "^1.35.2",
+    "simple-keyboard": "^3.2.35",
+    "@strapi/blocks-react-renderer": "^1.0.1",
+    "axios": "^1.7.9",
+    "fuse.js": "^7.0.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-simple-keyboard": "^3.8.37"
+  },
+  "devDependencies": {
+    "electron": "^12.0.16",
+    "electron-builder": "^22.10.5",
+    "next": "^10.1.3",
+    "nextron": "^6.0.6",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
+}

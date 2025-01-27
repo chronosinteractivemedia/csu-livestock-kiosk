@@ -1,0 +1,8 @@
+node_modules
+*.log
+.next
+app
+dist
+out
+renderer/public/uploads/*
+!renderer/public/uploads/.gitkeep

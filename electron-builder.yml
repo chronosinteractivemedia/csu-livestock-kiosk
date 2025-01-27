@@ -1,0 +1,12 @@
+appId: com.example.nextron
+productName: CSULIVESTOCKKIOSK
+copyright: Copyright © 2025 CSU 
+directories:
+  output: dist
+  buildResources: resources
+files:
+  - from: .
+    filter:
+      - package.json
+      - app
+publish: null
