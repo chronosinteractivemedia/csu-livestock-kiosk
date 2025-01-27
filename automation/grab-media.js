@@ -40,13 +40,13 @@ function download(url, dest) {
 }
 
 (async () => {
-    let images = await axios.get('https://csu-livestock-award-kiosk-cms.onrender.com/api/upload/files?limit=1000');
+    let images = await axios.get('https://csu-livestock-award-kiosk-cms.onrender.com/api/upload/files?limit=1000&pagination[page]=1&pagination[pageSize]=1000');
     images = images.data;
     let i = 1;
     for(let image of images){
         console.log(`Downloading media ${i++} of ${images.length}`);
         try{
-            await download(`https://csu-tg-cms.onrender.com${image.url}`, `renderer/public${image.url}`);
+            await download(`https://csu-livestock-award-kiosk-cms.onrender.com${image.url}`, `renderer/public${image.url}`);
         } catch (e) {
             console.log(e);
         }

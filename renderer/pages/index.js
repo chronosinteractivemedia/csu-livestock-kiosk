@@ -112,7 +112,7 @@ export default function Index({ awards, globalSettings }) {
       <div className={styles.inner}>
         <div className={styles.main}>
           <ImgDisplay
-            imgUrl={`https://csu-livestock-award-kiosk-cms.onrender.com${currentAward?.photo?.url}`}
+            imgUrl={`${currentAward?.photo?.url}`}
             year={currentAward?.year}
             name={`${currentAward?.firstName} ${currentAward?.lastName}`}
           />
