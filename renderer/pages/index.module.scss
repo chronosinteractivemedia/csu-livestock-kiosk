@@ -236,6 +236,7 @@
     border: none;
     padding-left: 40px;
     user-select: none;
+    pointer-events: none;
     &::placeholder {
       color: #7a564d;
     }
@@ -310,11 +311,12 @@
     }
   }
 }
-.oskbClear{
+.oskbClear {
   font-size: 12px;
   text-transform: uppercase;
-  color:#7a564d;
+  color: #7a564d;
   position: absolute;
   top: 32px;
   right: 30px;
 }
+
