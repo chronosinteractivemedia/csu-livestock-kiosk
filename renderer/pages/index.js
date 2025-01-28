@@ -38,8 +38,8 @@ export default function Index({ awards, globalSettings }) {
   useEffect(() => {
     setSortedAwards(
       awards.sort((a, b) => {
-        if (a.year > b.year) return -1;
-        if (a.year < b.year) return 1;
+        if (a.year < b.year) return -1;
+        if (a.year > b.year) return 1;
         if (a.lastName < b.lastName) return -1;
         if (a.lastName > b.lastName) return 1;
         return 0;
