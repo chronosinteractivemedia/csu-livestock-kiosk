@@ -24,7 +24,7 @@ export default function Index({ awards, globalSettings }) {
       timeout = setTimeout(() => {
         setIsAutoPlaying(true);
         setSearchOpen(false);
-      }, 15000);
+      }, 300000);
     }
     document.addEventListener("click", resetAutoPlay);
     document.addEventListener("keydown", resetAutoPlay);
@@ -51,7 +51,7 @@ export default function Index({ awards, globalSettings }) {
     if (isAutoPlaying) {
       const interval = setTimeout(() => {
         nextAward(false);
-      }, 5000);
+      }, 30000);
       return () => clearTimeout(interval);
     }
   }, [isAutoPlaying, currentAwardIndex]);
@@ -384,8 +384,15 @@ const kbOpts = {
 };
 
 const fuseOptions = {
-  keys: ["year", "lastName", "firstName"],
-  threshold: 0.4,
+  keys: [
+    { name: "lastName", weight: 0.3 },
+    { name: "firstName", weight: 0.3 },
+    { name: "year", weight: 0.4 },
+  ],
+  threshold: 0.2,
+  distance: 50, // Lower distance makes the search stricter
+  shouldSort: true,
+  ignoreLocation: true,
 };
 function Osk({ onClose, awards, onSelectIndex }) {
   const [value, setValue] = useState("");
@@ -409,13 +416,12 @@ function Osk({ onClose, awards, onSelectIndex }) {
         ipcRenderer.send('close-me');
     }
     const res = fuseInstance.search(value);
-    const newResults = res.map((r) => r.item);
+    const newResults = res.map((r) => ({...r.item, refIndex: r.refIndex}));
     setResults(newResults);
   }, [value]);
 
-  function onChooseResult(year, name) {
-    const index = awards.findIndex((a) => a.year === year && a.name === name);
-    onSelectIndex(index);
+  function onChooseResult(refIndex) {
+    onSelectIndex(refIndex);
     onClose();
   }
 
@@ -483,7 +489,7 @@ function Osk({ onClose, awards, onSelectIndex }) {
             <div
               key={i}
               className={styles.oskResult}
-              onClick={() => onChooseResult(r.year, r.name)}
+              onClick={() => onChooseResult(r.refIndex)}
             >
               <img
                 src={`https://csu-livestock-award-kiosk-cms.onrender.com${r.photo.url}`}
