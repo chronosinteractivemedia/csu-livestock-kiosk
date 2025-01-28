@@ -237,6 +237,10 @@
     padding-left: 40px;
     user-select: none;
     pointer-events: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    touch-action: none;
     &::placeholder {
       color: #7a564d;
     }
